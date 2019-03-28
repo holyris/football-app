@@ -6,6 +6,7 @@ function makeServiceAjax(){
         requeteCompetitions:requeteCompetitions,
         requeteClassement:requeteClassement,
         requeteButeurs:requeteButeurs,
+        requeteResultats:requeteResultats,
     };
 
     function requeteCompetitions(){
@@ -38,6 +39,28 @@ function makeServiceAjax(){
                 + id
                 + "/standings";  
     
+
+        return new Promise(function(resolve,reject){
+            http = new XMLHttpRequest();
+            http.open("GET",url);
+            http.setRequestHeader("X-Auth-Token", apikey);
+            http.responseType="json";
+            http.send();
+            http.onload=function(){
+                resolve(this.response);
+                
+            };
+            http.onerror=function(){
+                reject("Erreur");
+            };            
+        });
+    }
+
+    function requeteResultats(id){
+        var url=urlBase
+                +'/competitions/'
+                +id
+                +'/matches';
 
         return new Promise(function(resolve,reject){
             http = new XMLHttpRequest();
