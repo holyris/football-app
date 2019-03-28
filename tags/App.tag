@@ -84,6 +84,7 @@ this.onclickCompetition = ((event)=>{
 	if(this.compet_id != event.target.id){
 		this.classement = [];
 		this.buteurs = [];
+		//test
 		this.resetDataDisplay;
 	}
 	this.compet_id=event.target.id;
