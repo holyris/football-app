@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+}
+
+
+.img_team_mini{
+   float:left;
+   width: 20px;
+   height: auto;
+}
+
+.header_table_classement{
+    font-weight: bold;
+}

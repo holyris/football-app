@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>le fout</title>
+		<link rel="stylesheet" href="http://www.arda/css/concise.min.css">
+		<link rel="stylesheet" href="http://www.arda/css/concise-utils.min.css">
+		<link rel="stylesheet" href="http://www.arda/css/concise-ui.min.css">
+		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="./css/style.css">
+
+		<!-- Javascript -->
+
+		<script src="js/riot+compiler.min.js"></script>
+		<script src="js/serviceAjax.js"></script>
+
+
+		<!-- les composants -->
+
+		<script src="tags/App.tag" type="riot/tag"></script>
+		<script src="tags/Classement.tag" type="riot/tag"></script>
+		<script src="tags/Buteurs.tag" type="riot/tag"></script>
+		
+	</head>
+	<body>
+		<div container>
+			<App></App>
+
+			<script>
+				riot.mixin('serviceAjax', makeServiceAjax());
+				riot.mount('*',null);
+			</script>
+		</div>	
+	</body>
+</html>
