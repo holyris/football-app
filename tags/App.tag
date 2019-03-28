@@ -8,18 +8,19 @@
 	</div>
 </div>
 
-
-
 <div if={display_menu}>
 	<h3>{compet_name} {compet_area}</h3>
 	<button id="classement" onclick={onclickClassement}>Classement</button>
-	<button id="resultats">Résultats</button>
+	<button id="resultats" onclick={onclickResultats}>Résultats</button>
 	<button	id="buteurs" onclick={onclickButeurs}>Buteurs</button>
 	<br><br>
 
 	<Classement if={display_classement} data-classement={classement}></Classement>
 
+	<Resultats if={display_resultats} data-resultats={resultats}></Resultats>
+
 	<Buteurs if={display_buteurs} data-buteurs={buteurs}></Buteurs>
+
 
 </div>
 
@@ -31,11 +32,12 @@ this.loading = false; // variable qui permet d'activer le spinner
 this.competitions = [];
 this.classement = [];
 this.buteurs = [];
+this.resultats = [];
 
 this.display_menu = false;
 this.display_classement=false;
 this.display_buteurs = false;
-this.display_results = false;
+this.display_resultats = false;
 
 this.compet_id =0;
 this.compet_name = "";
@@ -70,6 +72,14 @@ this.getClassement = ((id)=>{
 
 });
 
+this.getResultats = ((id)=>{
+	this.loading = true;
+	this.requeteResultats(id).then((data)=>{
+		this.resultats = data.matches;
+		this.update();
+	});
+});
+
 this.getButeurs = ((id)=>{
 	this.loading = true;
 	this.requeteButeurs(id).then((data)=>{
@@ -84,8 +94,8 @@ this.onclickCompetition = ((event)=>{
 	if(this.compet_id != event.target.id){
 		this.classement = [];
 		this.buteurs = [];
-		//test
-		this.resetDataDisplay;
+		this.resultats = [];
+		this.resetDataDisplay();
 	}
 	this.compet_id=event.target.id;
 	this.compet_name=event.target.name;
@@ -105,6 +115,15 @@ this.onclickClassement = ((event)=>{
 
 });
 
+this.onclickResultats = ((event)=>{
+	// permet de ne pas refaire la requete pour rien
+	if(this.resultats.length == 0)
+		this.getResultats(this.compet_id);
+
+	this.resetDataDisplay();
+	this.display_resultats = true;
+})
+
 this.onclickButeurs = ((event)=>{
 	// permet de ne pas refaire la requete pour rien
 	if(this.buteurs.length == 0)
@@ -112,14 +131,13 @@ this.onclickButeurs = ((event)=>{
 
 	this.resetDataDisplay();
 	this.display_buteurs = true;
-
 })
 
 // permet d'avoir une fonction utilisable pour n'importe onglet
 this.resetDataDisplay = (()=>{
 	this.display_classement = false;
+	this.display_resultats = false;
 	this.display_buteurs = false;
-	this.display_results = false;
 });
 </script>
 </app>
