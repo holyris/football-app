@@ -31,7 +31,6 @@ this.buteurs = [];
 
 this.getButeurs = (()=>{
     this.buteurs = opts;
-    console.log(this.buteurs);
 });
 
 this.getButeurs();
