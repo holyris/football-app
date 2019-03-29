@@ -28,8 +28,8 @@ this.resultats = [];
     
 this.getResultats = (()=>{
     this.resultats = opts;
-    console.log(this.resultats);
 });
 this.getResultats();
+
 </script>
 </resultats>

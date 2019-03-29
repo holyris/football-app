@@ -75,9 +75,19 @@ this.getClassement = ((id)=>{
 this.getResultats = ((id)=>{
 	this.loading = true;
 	this.requeteResultats(id).then((data)=>{
-		this.resultats = data.matches;
+		
+		data.matches.forEach((resultat)=>{
+			match = [];
+			j = resultat.matchday - 1;			
+			console.log(resultat);
+			this.resultats[j].push(resultat);
+			j++;
+		});
+		console.log(this.resultats);
+
 		this.update();
 	});
+	this.loading = false;
 });
 
 this.getButeurs = ((id)=>{
@@ -86,6 +96,7 @@ this.getButeurs = ((id)=>{
 		this.buteurs = data.scorers;
 		this.update();
 	})
+	this.loading = false;
 });
 
 
