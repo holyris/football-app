@@ -12,3 +12,8 @@ body {
 .header_table_classement{
     font-weight: bold;
 }
+
+
+#page{
+    margin: 50px;
+}

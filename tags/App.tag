@@ -17,7 +17,7 @@
 
 	<Classement if={display_classement} data-classement={classement}></Classement>
 
-	<Resultats if={display_resultats} data-resultats={resultats}></Resultats>
+	<Resultats if={display_resultats} data-resultats={resultats} data-length={length_resultats}></Resultats>
 
 	<Buteurs if={display_buteurs} data-buteurs={buteurs}></Buteurs>
 
@@ -33,6 +33,7 @@ this.competitions = [];
 this.classement = [];
 this.buteurs = [];
 this.resultats = [];
+this.length_resultats;
 
 this.display_menu = false;
 this.display_classement=false;
@@ -77,14 +78,13 @@ this.getResultats = ((id)=>{
 	this.requeteResultats(id).then((data)=>{
 		
 		data.matches.forEach((resultat)=>{
-			match = [];
-			j = resultat.matchday - 1;			
-			console.log(resultat);
+			j = resultat.matchday - 1;
+			if(this.resultats[j] == undefined)
+				this.resultats[j] = [];
 			this.resultats[j].push(resultat);
 			j++;
 		});
-		console.log(this.resultats);
-
+		this.length_resultats = this.resultats.length;
 		this.update();
 	});
 	this.loading = false;
